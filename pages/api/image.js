@@ -8,9 +8,9 @@ const HEIGHT = 800;
 const WIDTH = 800;
 
 const DEFAULT_COODS = {
-  left_chest: [180, 470, 70, 70], // [top, left, width, height]
-  right_chest: [180, 260, 70, 70],
-  full_front: [180, 260, 280, 280],
+  left_chest: [180, 455, 70, 70], // [top, left, width, height]
+  right_chest: [180, 275, 70, 70],
+  full_front: [180, 275, 250, 280],
 };
 
 export default function (req, res) {
