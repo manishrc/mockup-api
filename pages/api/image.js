@@ -23,9 +23,9 @@ export default function (req, res) {
     searchParams.get("productImageUrl") ||
     "https://images.printify.com/5d5d38714b5ca808b34518b7.jpg";
 
-  const importLocation = searchParams.get("location") || "left_chest";
+  const imprintLocation = searchParams.get("location") || "left_chest";
   const coords =
-    searchParams.get("coords")?.split(",") || DEFAULT_COODS[importLocation];
+    searchParams.get("coords")?.split(",") || DEFAULT_COODS[imprintLocation];
 
   const debug = searchParams.get("debug") == "true" || false;
 
