@@ -4,25 +4,32 @@ export const config = {
   runtime: "experimental-edge",
 };
 
+const DEFAULT_PRODUCT =
+  "https://images.printify.com/5d5d38714b5ca808b34518b7.jpg";
+const DEFAULT_LOGO = "https://promohunt.com/images/promohunt.svg";
+const DEFAULT_IMPRINT_LOCATION = "full_front";
+
 const HEIGHT = 800;
 const WIDTH = 800;
 
 const DEFAULT_COODS = {
-  left_chest: [180, 455, 70, 70], // [top, left, width, height]
-  right_chest: [180, 275, 70, 70],
-  full_front: [180, 275, 250, 280],
+  //position: [top, left, width, height]
+  left_chest: [455, 180, 70, 70],
+  right_chest: [275, 180, 70, 70],
+  full_front: [275, 180, 250, 280],
 };
 
 export default function (req, res) {
   const { searchParams } = new URL(req.url);
 
-  const logoUrl =
-    searchParams.get("logoUrl") || "https://promohunt.com/images/promohunt.svg";
-  const productImageUrl =
-    searchParams.get("productImageUrl") ||
-    "https://images.printify.com/5d5d38714b5ca808b34518b7.jpg";
+  const logoUrl = searchParams.get("logoUrl") || DEFAULT_LOGO;
 
-  const imprintLocation = searchParams.get("imprintLocation") || "left_chest";
+  const productImageUrl =
+    searchParams.get("productImageUrl") || DEFAULT_PRODUCT;
+
+  const imprintLocation =
+    searchParams.get("imprintLocation") || DEFAULT_IMPRINT_LOCATION;
+
   const coords =
     searchParams.get("coords")?.split(",") || DEFAULT_COODS[imprintLocation];
 
@@ -53,8 +60,8 @@ export default function (req, res) {
           style={{
             display: "flex",
             position: "absolute",
-            top: `${coords[0]}px`,
-            left: `${coords[1]}px`,
+            left: `${coords[0]}px`,
+            top: `${coords[1]}px`,
             width: `${coords[2]}px`,
             height: `${coords[3]}px`,
             border: debug ? "1px dashed red" : "none",
