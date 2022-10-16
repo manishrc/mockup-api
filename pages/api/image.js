@@ -4,20 +4,30 @@ export const config = {
   runtime: "experimental-edge",
 };
 
+const HEIGHT = 800;
+const WIDTH = 800;
+
 const DEFAULT_COODS = {
-  left_chest: [240, 340, 60, 60], // [top, left, width, height]
+  left_chest: [180, 470, 70, 70], // [top, left, width, height]
+  right_chest: [180, 260, 70, 70],
+  full_front: [180, 260, 280, 280],
 };
 
 export default function (req, res) {
-  const query = req.query || {};
+  const { searchParams } = new URL(req.url);
+
   const logoUrl =
-    query.logo ||
+    searchParams.get("logoUrl") ||
     "https://cdnp.sanmar.com/medias/sys_master/images/images/hbd/hf2/10861561446430/Cotopaxi-logo-1200x755.png";
   const productImageUrl =
-    query.productImage ||
+    searchParams.get("productImageUrl") ||
     "https://images.printify.com/5d5d38714b5ca808b34518b7.jpg";
-  const importLocation = query.location || "left_chest";
-  const coords = query.coords?.split(",") || DEFAULT_COODS[importLocation];
+
+  const importLocation = searchParams.get("location") || "left_chest";
+  const coords =
+    searchParams.get("coords")?.split(",") || DEFAULT_COODS[importLocation];
+
+  const debug = searchParams.get("debug") == "true" || false;
 
   return new ImageResponse(
     (
@@ -48,6 +58,7 @@ export default function (req, res) {
             left: `${coords[1]}px`,
             width: `${coords[2]}px`,
             height: `${coords[3]}px`,
+            border: debug ? "1px dashed red" : "none",
           }}
         >
           <img
@@ -63,8 +74,8 @@ export default function (req, res) {
       </div>
     ),
     {
-      width: 600,
-      height: 800,
+      width: WIDTH,
+      height: HEIGHT,
     }
   );
 }
