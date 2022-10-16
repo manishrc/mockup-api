@@ -17,8 +17,7 @@ export default function (req, res) {
   const { searchParams } = new URL(req.url);
 
   const logoUrl =
-    searchParams.get("logoUrl") ||
-    "https://cdnp.sanmar.com/medias/sys_master/images/images/hbd/hf2/10861561446430/Cotopaxi-logo-1200x755.png";
+    searchParams.get("logoUrl") || "https://promohunt.com/images/promohunt.svg";
   const productImageUrl =
     searchParams.get("productImageUrl") ||
     "https://images.printify.com/5d5d38714b5ca808b34518b7.jpg";
