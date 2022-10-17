@@ -13,7 +13,7 @@ const HEIGHT = 800;
 const WIDTH = 800;
 
 const DEFAULT_COODS = {
-  //position: [top, left, width, height]
+  //position: [left, top, width, height]
   left_chest: [455, 180, 70, 70],
   right_chest: [275, 180, 70, 70],
   full_front: [275, 180, 250, 280],
@@ -67,15 +67,19 @@ export default function (req, res) {
             border: debug ? "1px dashed red" : "none",
           }}
         >
-          <img
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "contain",
-              opacity: 0.9,
-            }}
-            src={logoUrl}
-          />
+          {imprintLocation == "full_front" ? (
+            <img src={logoUrl} width="100%" maxHeight="100%" />
+          ) : (
+            <img
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                opacity: 0.9,
+              }}
+              src={logoUrl}
+            />
+          )}
         </div>
       </div>
     ),
